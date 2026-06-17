@@ -1,22 +1,16 @@
 FROM nginx:alpine
 
-# Remove default nginx config
+# Remove default nginx config  
 RUN rm -f /etc/nginx/conf.d/default.conf
 
 # Copy custom nginx config
 COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 
-# Copy all frontend files to nginx
+# Copy frontend static files
 COPY index.html /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
 COPY pages/ /usr/share/nginx/html/pages/
 COPY assets/ /usr/share/nginx/html/assets/
-COPY scripts/ /usr/share/nginx/html/scripts/
-
-# Create necessary directories
-RUN mkdir -p /usr/share/nginx/html/pages \
-    && mkdir -p /usr/share/nginx/html/assets \
-    && mkdir -p /usr/share/nginx/html/scripts
 
 # Expose port
 EXPOSE 3000
