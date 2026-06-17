@@ -6,8 +6,11 @@ RUN rm /etc/nginx/conf.d/default.conf
 # Copy custom nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy all static files to nginx
-COPY . /usr/share/nginx/html/
+# Copy frontend files to nginx
+COPY index.html /usr/share/nginx/html/
+COPY styles.css /usr/share/nginx/html/
+COPY pages/ /usr/share/nginx/html/pages/
+COPY assets/ /usr/share/nginx/html/assets/
 
 # Expose port
 EXPOSE 3000

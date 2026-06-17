@@ -1,6 +1,6 @@
 {
   "build": {
-    "builder": "static"
+    "builder": "dockerfile"
   },
   "serverless": {
     "regions": ["hkg"]
