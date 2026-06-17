@@ -1,8 +1,14 @@
 {
   "build": {
-    "builder": "static"
+    "builder": "docker"
   },
   "serverless": {
     "regions": ["hkg"]
-  }
+  },
+  "ports": [
+    {
+      "protocol": "http",
+      "port": 3000
+    }
+  ]
 }
