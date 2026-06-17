@@ -10,7 +10,6 @@ build/
 .gitignore
 .dockerignore
 Dockerfile
-nginx.conf
 README.md
 DEPLOYMENT.md
 ZEABUR_DEPLOY.md
@@ -18,3 +17,5 @@ QUICKSTART.md
 crop_logo.py
 scripts/
 *.md
+backend/
+deploy-zeabur.*
