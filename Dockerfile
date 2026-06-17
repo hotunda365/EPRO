@@ -1,15 +1,20 @@
-FROM node:18-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+# Remove default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy all files
-COPY . .
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Install a simple HTTP server to serve static files
-RUN npm install -g serve
+# Copy all static files to nginx
+COPY . /usr/share/nginx/html/
 
 # Expose port
 EXPOSE 3000
 
-# Start the server
-CMD ["serve", "-s", ".", "-l", "3000"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://localhost:3000 || exit 1
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
