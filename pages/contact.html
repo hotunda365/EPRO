@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>聯絡我們 — ETS • EproTel</title>
+  <link rel="icon" type="image/png" href="../assets/logo/ets-logo-small.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .contact-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .contact-info { background: var(--card); padding: 20px; border-radius: 10px; }
+    .contact-form { background: var(--card); padding: 20px; border-radius: 10px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; margin-bottom: 4px; font-weight: 500; }
+    .form-group input, .form-group textarea { width: 100%; padding: 8px; border: 1px solid rgba(11,35,64,0.1); border-radius: 6px; font-family: inherit; }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-switchbar">
+      <div class="container">
+        <nav class="switch-links" aria-label="網站切換">
+          <a href="../index.html">易通訊集團</a>
+          <a href="services.html">易寶通訊</a>
+          <a href="contact.html" class="active-switch">易寶人才</a>
+        </nav>
+        <div class="switch-tools">
+          <a href="about.html">繁體</a>
+          <a href="contact.html" class="cta-login">登入</a>
+        </div>
+      </div>
+    </div>
+    <div class="container header-inner">
+      <a class="logo" href="../index.html" aria-label="EproTel">
+        <img src="../assets/logo/eprotel-logo.png" alt="EproTel" />
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html">首頁</a>
+        <a href="about.html">公司簡介</a>
+        <a href="services.html">產品與服務</a>
+        <a href="cases.html">案例</a>
+        <a href="contact.html" class="btn-ghost active">聯絡我們</a>
+      </nav>
+      <button class="nav-toggle" aria-label="打開選單">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="breadcrumb">
+      <div class="container">
+        <a href="../index.html">首頁</a> / 聯絡我們
+      </div>
+    </section>
+
+    <section class="page-hero">
+      <div class="container">
+        <h1>聯絡我們</h1>
+        <p>有任何疑問？請透過以下方式與我們聯繫，我們樂於為您服務</p>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>📍 辦公室地址</h3>
+            <p>
+              香港中環<br>
+              棣香港中心<br>
+              15 樓<br>
+              香港
+            </p>
+          </div>
+
+          <div class="contact-info">
+            <h3>📞 聯絡方式</h3>
+            <p>
+              <strong>電話：</strong> +852 1234 5678<br>
+              <strong>傳真：</strong> +852 1234 5679<br>
+              <strong>電郵：</strong> <a href="mailto:info@example.com">info@example.com</a><br>
+              <strong>銷售：</strong> <a href="mailto:sales@example.com">sales@example.com</a>
+            </p>
+          </div>
+
+          <div class="contact-info">
+            <h3>🕐 營業時間</h3>
+            <p>
+              <strong>週一至週五：</strong> 09:00 - 18:00<br>
+              <strong>週六：</strong> 10:00 - 14:00<br>
+              <strong>週日及公眾假期：</strong> 休息<br>
+              <strong>技術支援：</strong> 24/7
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-form-section">
+      <div class="container">
+        <h2>發送訊息</h2>
+        <div style="max-width: 600px; margin: 0 auto;">
+          <form class="contact-form" method="POST" action="https://formspree.io/f/YOUR_FORM_ID">
+            <div class="form-group">
+              <label for="name">姓名 *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">電郵 *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="company">公司名稱</label>
+              <input type="text" id="company" name="company">
+            </div>
+            <div class="form-group">
+              <label for="subject">主題 *</label>
+              <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+              <label for="message">訊息 *</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">發送訊息</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="container">
+        <h2>常見問題</h2>
+        <div class="grid grid-2">
+          <div class="faq-item">
+            <h4>Q: 如何開始免費試用？</h4>
+            <p>填妥聯絡表格或撥打 +852 1234 5678，我們會在 24 小時內與您聯繫安排試用。</p>
+          </div>
+          <div class="faq-item">
+            <h4>Q: 是否提供技術支援？</h4>
+            <p>是的，我們提供 24/7 電話、郵件及遠端支援。企業方案更包括專屬帳號經理。</p>
+          </div>
+          <div class="faq-item">
+            <h4>Q: 遷移舊系統需要多長時間？</h4>
+            <p>取決於系統規模，一般 2-6 週內可完成遷移，我們會提供全程支援及培訓。</p>
+          </div>
+          <div class="faq-item">
+            <h4>Q: 是否支援多語言？</h4>
+            <p>支援，我們的平台及支援團隊提供繁體中文、簡體中文及英文服務。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-return">
+      <div class="container">
+        <a href="#">返回頁首 ↑</a>
+        <a class="footer-return-brand" href="../index.html" aria-label="EproTel">
+          <img src="../assets/logo/eprotel-logo.png" alt="EproTel" />
+        </a>
+      </div>
+    </div>
+    <div class="footer-panels">
+      <div class="container footer-inner">
+        <section class="footer-panel" aria-labelledby="footer-contact-title">
+          <h2 class="footer-panel-title" id="footer-contact-title"><span class="footer-panel-icon">C</span>聯絡我們</h2>
+          <div class="footer-panel-links">
+            <a href="contact.html">致函、致電或留言給我們</a>
+            <a href="mailto:info@example.com">info@example.com</a>
+          </div>
+        </section>
+        <section class="footer-panel" aria-labelledby="footer-services-title">
+          <h2 class="footer-panel-title" id="footer-services-title"><span class="footer-panel-icon">S</span>產品與服務</h2>
+          <div class="footer-panel-links">
+            <a href="services.html">企業通訊與雲端方案</a>
+            <a href="cases.html">查看行業案例與部署方式</a>
+          </div>
+        </section>
+        <section class="footer-panel" aria-labelledby="footer-support-title">
+          <h2 class="footer-panel-title" id="footer-support-title"><span class="footer-panel-icon">?</span>協助及支援</h2>
+          <div class="footer-panel-links">
+            <a href="contact.html">查詢售前建議與技術支援</a>
+            <a href="contact.html">預約顧問跟進服務需求</a>
+          </div>
+        </section>
+        <section class="footer-panel" aria-labelledby="footer-about-title">
+          <h2 class="footer-panel-title" id="footer-about-title"><span class="footer-panel-icon">i</span>關於 EproTel</h2>
+          <div class="footer-panel-links">
+            <a href="about.html">公司簡介、團隊與服務承諾</a>
+            <a href="cases.html">案例、合作模式及最新資訊</a>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div class="container footer-bottom">
+        <div class="footer-legal-links">
+          <a href="about.html">私隱與保安</a>
+          <a href="services.html">網站使用條款</a>
+          <a href="contact.html">網上保安</a>
+          <a href="contact.html">監管披露</a>
+          <a href="about.html">更多</a>
+        </div>
+        <div class="footer-copyright">© 2026 EproTel. All rights reserved.<br>香港企業通訊、雲端及系統整合服務供應商</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

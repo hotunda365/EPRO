@@ -1,0 +1,8 @@
+{
+  "build": {
+    "builder": "static"
+  },
+  "serverless": {
+    "regions": ["hkg"]
+  }
+}
