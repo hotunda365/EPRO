@@ -1,0 +1,15 @@
+{
+  "build": {
+    "builder": "docker",
+    "dockerfilePath": "Dockerfile"
+  },
+  "serverless": {
+    "regions": ["hkg"]
+  },
+  "ports": [
+    {
+      "protocol": "http",
+      "port": 3000
+    }
+  ]
+}
