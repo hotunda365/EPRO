@@ -11,6 +11,7 @@ COPY index.html /usr/share/nginx/html/
 COPY styles.css /usr/share/nginx/html/
 COPY pages/ /usr/share/nginx/html/pages/
 COPY assets/ /usr/share/nginx/html/assets/
+COPY scripts/ /usr/share/nginx/html/scripts/
 
 # Expose port
 EXPOSE 8080

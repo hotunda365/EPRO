@@ -7,9 +7,10 @@
   <meta name="description" content="ETS Group 管理層團隊介紹，了解集團高級管理人員。">
   <link rel="icon" type="image/png" href="../assets/logo/ets-logo-small.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=20260710">
+  <link rel="stylesheet" href="../styles.css?v=20260714cms1">
+  <script src="../scripts/cms.js?v=20260714cms1" defer></script>
 </head>
-<body>
+<body data-cms-site="ets-group" data-cms-page="management">
   <header class="site-header">
     <div class="header-switchbar">
       <div class="container">
@@ -32,76 +33,79 @@
       <nav class="main-nav">
         <a href="../index.html">主頁</a>
         <div class="nav-has-dropdown">
-          <a href="about.html">公司簡介</a>
+          <a href="about.html" class="active">公司簡介</a>
           <div class="nav-dropdown">
             <a href="about.html">公司簡介</a>
             <a href="milestones.html">里程碑</a>
+            <a href="board.html">董事局</a>
+            <a href="management.html" class="subnav-active">管理層</a>
           </div>
         </div>
-        <a href="board.html">董事局</a>
-        <a href="management.html" class="active">管理層</a>
         <a href="business.html">業務</a>
         <a href="investor.html">投資者關係</a>
-        <a href="contact.html">聯絡</a>
+        <a href="news.html">最新消息</a>
+        <a href="contact.html">聯絡我們</a>
       </nav>
       <button class="nav-toggle" aria-label="打開選單">☰</button>
     </div>
   </header>
 
   <main>
-    <section class="breadcrumb">
-      <div class="container">
-        <a href="../index.html">首頁</a> / 管理層
-      </div>
-    </section>
-
-    <section class="page-hero">
-      <div class="container">
-        <h1>管理層</h1>
-        <p>專業團隊帶領集團日常營運及策略發展</p>
+    <section class="sam-hero">
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop" alt="現代企業辦公大樓" class="sam-hero-img">
+      <div class="sam-hero-overlay">
+        <div class="container">
+          <p class="sam-hero-eyebrow">公司簡介</p>
+          <h1 class="sam-hero-title">管理層</h1>
+          <p class="sam-hero-lead">專業團隊帶領集團日常營運及策略發展</p>
+        </div>
       </div>
     </section>
 
     <section class="content">
       <div class="container">
-        <h2>高級管理團隊</h2>
-        <div class="grid grid-3">
-          <div class="team-member">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" alt="行政總裁人像">
-            <h4>林先生</h4>
-            <p>行政總裁 (CEO)</p>
-            <p class="bio">負責集團整體策略方向及業務發展。</p>
-          </div>
-          <div class="team-member">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" alt="技術總監人像">
-            <h4>王女士</h4>
-            <p>技術總監 (CTO)</p>
-            <p class="bio">雲端架構與網路安全專家，主導技術創新。</p>
-          </div>
-          <div class="team-member">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop" alt="營運總監人像">
-            <h4>陳先生</h4>
-            <p>營運總監 (COO)</p>
-            <p class="bio">客戶關係與項目交付的領導者。</p>
-          </div>
-          <div class="team-member">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" alt="財務總監人像">
-            <h4>張先生</h4>
-            <p>財務總監 (CFO)</p>
-            <p class="bio">負責集團財務規劃、審計及投資者關係。</p>
-          </div>
-          <div class="team-member">
-            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop" alt="銷售總監人像">
-            <h4>黃先生</h4>
-            <p>銷售總監</p>
-            <p class="bio">帶領銷售團隊拓展企業客戶市場。</p>
-          </div>
-          <div class="team-member">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop" alt="人力資源總監人像">
-            <h4>趙女士</h4>
-            <p>人力資源總監</p>
-            <p class="bio">負責人才招聘、培訓與企業文化建設。</p>
-          </div>
+        <div class="management-intro">
+          <span class="sam-eyebrow">MANAGEMENT TEAM</span>
+          <h2>管理層成員</h2>
+          <p>管理團隊負責集團日常營運、財務管理、資訊科技及聯絡中心服務的持續發展。</p>
+        </div>
+        <div class="management-grid">
+          <article class="management-member">
+            <p class="management-role">執行董事</p>
+            <h3>蕭文安</h3>
+            <p>蕭文安先生持有澳洲吉朗迪肯大學商學（會計專業）學士學位，為澳洲會計師公會會員及香港會計師公會資深會員。</p>
+            <p>他於 2009 年加入本公司，曾任企業融資及策劃部總監。</p>
+          </article>
+          <article class="management-member">
+            <p class="management-role">營運總監</p>
+            <h3>張敏儀</h3>
+            <p>張敏儀女士持有美國德薩斯州大學文學士學位，1991 年加入易寶通訊集團，於 1994 年晉陞為總經理，2003 年擢升為營運總監。</p>
+            <p>她主要負責集團香港聯絡中心業務的銷售、拓展及營運工作。</p>
+          </article>
+          <article class="management-member">
+            <p class="management-role">財務顧問</p>
+            <h3>梁偉祥博士</h3>
+            <p>梁博士持有商業管理博士、教育學（教育管理）博士及專業會計碩士學位，並具備多項專業會計及公司管治資格。</p>
+            <p>他擁有香港資本市場融資上市及金融財務管理的豐富經驗。</p>
+          </article>
+          <article class="management-member">
+            <p class="management-role">財務總監</p>
+            <h3>孫福開</h3>
+            <p>孫福開先生持有香港公開大學商學院學士學位，並自 1998 年起為香港會計師公會認可會員。</p>
+            <p>他於 2003 年加入本公司，負責集團公司的財務整合及財政管理。</p>
+          </article>
+          <article class="management-member">
+            <p class="management-role">總經理－資訊科技</p>
+            <h3>余若詩</h3>
+            <p>余若詩先生持有香港城市大學資訊科技學士學位及項目管理國際認可證書，於 2003 年加入易寶通訊。</p>
+            <p>他負責集團資訊科技部門及相關管理行政工作，具備軟件開發、網絡架構及系統支援經驗。</p>
+          </article>
+          <article class="management-member">
+            <p class="management-role">軟件開發經理</p>
+            <h3>張志達</h3>
+            <p>張志達先生畢業於香港理工大學電子工程系，1990 年加入易寶通訊，長期從事客戶系統及營運軟件開發。</p>
+            <p>他現時主要負責「偉思」（WISE-xb）及其他聯絡中心系統開發和研究項目。</p>
+          </article>
         </div>
       </div>
     </section>
@@ -122,7 +126,7 @@
           <h2 class="footer-panel-title" id="footer-contact-title"><span class="footer-panel-icon">C</span>聯絡我們</h2>
           <div class="footer-panel-links">
             <a href="contact.html">致函、致電或留言給我們</a>
-            <a href="mailto:info@example.com">info@example.com</a>
+            <a href="mailto:info@eprotel.com.hk">info@eprotel.com.hk</a>
           </div>
         </section>
         <section class="footer-panel" aria-labelledby="footer-services-title">

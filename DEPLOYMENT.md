@@ -1,5 +1,7 @@
 # 部署與 SEO 指南
 
+> CMS API、PostgreSQL、管理員、S3 媒體及 Zeabur 部署步驟請參閱 [backend/CMS_GUIDE.md](backend/CMS_GUIDE.md)。本文件其餘部分保留作公開網站與 SEO 參考。
+
 ## 📋 部署檢查清單
 
 ### 1. 環境準備

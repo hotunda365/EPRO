@@ -1,6 +1,6 @@
 # ETS • EproTel 網站合併專案
 
-兩家公司網站（etsgroup.com.hk 與 eprotel.com.hk）合併為一個統一品牌網站。
+集團網站與 EproTel 內容管理平台，包含靜態公開網站、Express CMS API、PostgreSQL、管理介面及 Zeabur 部署設定。
 
 ## 📂 專案結構
 
@@ -8,15 +8,18 @@
 EproTel/
 ├── index.html              # 首頁（HTML 靜態版）
 ├── styles.css              # 全站樣式
+├── backend/                # CMS API、管理介面、migration 及測試
 ├── pages/                  # 其他頁面
 │   ├── about.html          # 關於我們
 │   ├── services.html       # 服務與產品
 │   ├── cases.html          # 案例分享
+│   ├── news.html           # 最新消息
 │   └── contact.html        # 聯絡我們
 ├── assets/                 # 靜態資源
 │   ├── images/             # 圖片
 │   └── logo/               # Logo 相關檔案
-├── scripts/                # 工具腳本
+├── scripts/                # 公開網站 CMS client 及工具腳本
+│   ├── cms.js              # 公開只讀 API 整合
 │   └── download-logo.ps1   # Logo 下載器
 └── README.md               # 此檔案
 ```
@@ -35,17 +38,18 @@ python -m http.server 8000
 # http://localhost:8000
 ```
 
-### 2. Node.js 開發環境（推薦）
-若要進階開發（Next.js/React）：
-```bash
-# 初始化 Node 專案
-npm init -y
-
-# 安裝依賴（如果有 Next.js 版本）
-npm install next react react-dom
-npm run dev
-# 瀏覽 http://localhost:3000
+### 2. CMS API 與管理介面
+```powershell
+cd backend
+npm install
+npm run migrate
+npm run seed
+npm start
 ```
+
+管理介面：`http://localhost:3000/admin/`
+
+完整設定、建立管理員、權限、媒體及部署方法請參閱 [backend/CMS_GUIDE.md](backend/CMS_GUIDE.md)。
 
 ## 🎨 品牌設定
 
@@ -82,7 +86,8 @@ npm run dev
 - **關於我們** (`pages/about.html`)：公司歷史、團隊、願景
 - **服務** (`pages/services.html`)：詳細服務、價格方案
 - **案例** (`pages/cases.html`)：客戶案例、成功故事
-- **聯絡** (`pages/contact.html`)：聯絡表單、地址、營業時間
+- **最新消息** (`pages/news.html`)：由 CMS 發布的集團消息
+- **聯絡** (`pages/contact.html`)：官方地址及服務聯絡資料
 
 ## 🔍 SEO & 部署
 

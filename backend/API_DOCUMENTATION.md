@@ -1,5 +1,7 @@
 # EPRO API Documentation
 
+> **Legacy reference only:** 本文件以下內容描述舊版未驗證 CRUD API。這些路由目前預設停用，正式 CMS API、登入、權限及發布流程請以 [CMS_GUIDE.md](CMS_GUIDE.md) 為準。不要在正式環境設定 `ENABLE_LEGACY_API=true`。
+
 ## 概述
 
 EPRO API 是為易寶通訊公司開發的 RESTful API 服務，使用 Node.js + Express + PostgreSQL。

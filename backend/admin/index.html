@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>網站內容管理 — EPRO CMS</title>
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script src="/admin/resource-definitions.js" defer></script>
+  <script src="/admin/admin.js" defer></script>
+</head>
+<body>
+  <section class="login-shell" id="login-view">
+    <div class="login-brand" aria-hidden="true">
+      <span class="brand-mark">E</span>
+      <p>EPRO CMS</p>
+    </div>
+    <form class="login-panel" id="login-form">
+      <p class="eyebrow">SECURE ADMINISTRATION</p>
+      <h1>網站內容管理</h1>
+      <label for="login-email">電郵地址</label>
+      <input id="login-email" name="email" type="email" autocomplete="username" required>
+      <label for="login-password">密碼</label>
+      <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+      <p class="form-error" id="login-error" role="alert"></p>
+      <button class="button button-primary login-submit" type="submit">登入</button>
+    </form>
+  </section>
+
+  <div class="admin-shell" id="admin-view" hidden>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-mark">E</span>
+        <div><strong>EPRO CMS</strong><small>內容管理平台</small></div>
+      </div>
+      <nav class="sidebar-nav" id="sidebar-nav" aria-label="管理功能">
+        <button type="button" data-view="dashboard" class="active">總覽</button>
+        <p>網站</p>
+        <button type="button" data-resource="settings">網站設定</button>
+        <button type="button" data-resource="navigation">導覽與頁尾</button>
+        <button type="button" data-resource="pages">公司與頁面</button>
+        <button type="button" data-resource="contacts">聯絡資料</button>
+        <p>內容</p>
+        <button type="button" data-resource="milestones">里程碑</button>
+        <button type="button" data-resource="people">董事局及管理層</button>
+        <button type="button" data-resource="services">業務與服務</button>
+        <button type="button" data-resource="cases">案例</button>
+        <button type="button" data-resource="news">最新消息</button>
+        <button type="button" data-resource="investor-documents">投資者文件</button>
+        <p>系統</p>
+        <button type="button" data-view="media">媒體庫</button>
+        <button type="button" data-view="users" data-role="admin">管理員</button>
+        <button type="button" data-view="audit" data-role="publisher">審計紀錄</button>
+      </nav>
+    </aside>
+
+    <div class="admin-main">
+      <header class="topbar">
+        <button class="icon-button menu-button" id="menu-button" type="button" aria-label="開啟管理選單">☰</button>
+        <div class="topbar-context">
+          <p id="view-eyebrow">內容管理</p>
+          <h1 id="view-title">總覽</h1>
+        </div>
+        <label class="site-picker">品牌
+          <select id="site-select"></select>
+        </label>
+        <div class="account-menu">
+          <span id="account-name"></span>
+          <button class="button button-secondary" id="logout-button" type="button">登出</button>
+        </div>
+      </header>
+      <main class="workspace" id="workspace" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <dialog class="editor-dialog" id="editor-dialog">
+    <form id="editor-form">
+      <header class="dialog-header">
+        <div><p class="eyebrow" id="editor-eyebrow">CONTENT</p><h2 id="editor-title">新增內容</h2></div>
+        <button class="icon-button" type="button" data-close-dialog="editor-dialog" aria-label="關閉">×</button>
+      </header>
+      <div class="dialog-body form-grid" id="editor-fields"></div>
+      <footer class="dialog-footer">
+        <button class="button button-secondary" type="button" data-close-dialog="editor-dialog">取消</button>
+        <button class="button button-primary" type="submit">儲存</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <dialog class="history-dialog" id="history-dialog">
+    <header class="dialog-header">
+      <div><p class="eyebrow">VERSION HISTORY</p><h2>版本紀錄</h2></div>
+      <button class="icon-button" type="button" data-close-dialog="history-dialog" aria-label="關閉">×</button>
+    </header>
+    <div class="dialog-body" id="history-content"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

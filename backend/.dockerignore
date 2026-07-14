@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.*
+!.env.example
+uploads/
+test/
+*.log
+npm-debug.log*
+.git/
+.gitignore
+.dockerignore
+API_DOCUMENTATION.md
+CMS_GUIDE.md

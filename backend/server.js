@@ -1,96 +1,129 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
+const { rateLimit } = require('express-rate-limit');
 require('dotenv').config();
 
 const pool = require('./db/connection');
-const initDB = require('./db/init');
-
-// Import route handlers
-const userRoutes = require('./routes/users');
-const companyRoutes = require('./routes/company');
-const contactRoutes = require('./routes/contact');
-const blogRoutes = require('./routes/blog');
-const servicesRoutes = require('./routes/services');
-const caseStudiesRoutes = require('./routes/caseStudies');
+const runMigrations = require('./db/migrations');
+const runSeed = require('./db/seed');
+const bootstrapAdminFromEnv = require('./services/bootstrap-admin');
+const authRoutes = require('./routes/v1/auth');
+const publicRoutes = require('./routes/v1/public');
+const adminRoutes = require('./routes/v1/admin');
+const mediaRoutes = require('./routes/v1/media');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number.parseInt(process.env.PORT || '3000', 10);
+const configuredOrigins = (process.env.CORS_ORIGINS || 'http://localhost:8000,http://localhost:8080')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
-// Middleware
-app.use(helmet());
-app.use(cors({
-  origin: ['http://localhost:8080', 'https://epro.zeabur.app', 'https://github.com/hotunda365/EPRO'],
-  credentials: true
-}));
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.set('trust proxy', 1);
+app.disable('x-powered-by');
+app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
+app.use((req, res, next) => cors({
+  origin(origin, callback) {
+    const requestOrigin = `${req.protocol}://${req.get('host')}`;
+    if (!origin || origin === requestOrigin || configuredOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('Origin is not allowed by CORS'));
+  },
+  credentials: true,
+  methods: ['GET', 'HEAD', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'X-CSRF-Token']
+})(req, res, next));
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ limit: '1mb', extended: false }));
+app.use(cookieParser());
 
-// Health check endpoint
+const apiLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  limit: 180,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false
+});
+app.use('/api/', apiLimiter);
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-// Database connection check
-app.get('/api/db-status', async (req, res) => {
+app.get('/api/ready', async (req, res) => {
   try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({ 
-      status: 'Connected',
-      database_time: result.rows[0],
-      timestamp: new Date().toISOString()
-    });
+    await pool.query('SELECT 1');
+    res.json({ status: 'ready', timestamp: new Date().toISOString() });
   } catch (error) {
-    res.status(500).json({ 
-      status: 'Error',
-      error: error.message
-    });
+    res.status(503).json({ status: 'unavailable' });
   }
 });
 
-// API Routes
-app.use('/api/users', userRoutes);
-app.use('/api/company', companyRoutes);
-app.use('/api/contact', contactRoutes);
-app.use('/api/blog', blogRoutes);
-app.use('/api/services', servicesRoutes);
-app.use('/api/case-studies', caseStudiesRoutes);
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/public', publicRoutes);
+app.use('/api/v1/admin/media', mediaRoutes);
+app.use('/api/v1/admin', adminRoutes);
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({
-    error: 'Not Found',
-    path: req.path,
-    method: req.method
+if (process.env.ENABLE_LEGACY_API === 'true') {
+  app.use('/api/legacy/users', require('./routes/users'));
+  app.use('/api/legacy/company', require('./routes/company'));
+  app.use('/api/legacy/contact', require('./routes/contact'));
+  app.use('/api/legacy/blog', require('./routes/blog'));
+  app.use('/api/legacy/services', require('./routes/services'));
+  app.use('/api/legacy/case-studies', require('./routes/caseStudies'));
+}
+
+if (process.env.ENABLE_CHAT === 'true') {
+  const chatLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: 30,
+    standardHeaders: 'draft-8',
+    legacyHeaders: false
   });
+  app.use('/api/chat', chatLimiter, require('./routes/chat'));
+}
+
+app.use('/admin', express.static(path.join(__dirname, 'admin'), { index: 'index.html' }));
+
+app.use((req, res) => {
+  res.status(404).json({ error: 'Not Found', path: req.path, method: req.method });
 });
 
-// Error handler
-app.use((err, req, res, next) => {
-  console.error('Error:', err);
+app.use((error, req, res, next) => {
+  if (error.message === 'Origin is not allowed by CORS') {
+    return res.status(403).json({ error: error.message });
+  }
+  console.error('Request error:', error);
   res.status(500).json({
     error: 'Internal Server Error',
-    message: process.env.NODE_ENV === 'production' ? 'An error occurred' : err.message
+    message: process.env.NODE_ENV === 'production' ? undefined : error.message
   });
 });
 
-// Initialize database and start server
 const start = async () => {
-  try {
-    console.log('Initializing database...');
-    await initDB();
-    
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`✅ EPRO API Server running on port ${PORT}`);
-      console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
-      console.log(`🗄️  Database status: http://localhost:${PORT}/api/db-status`);
-    });
-  } catch (error) {
-    console.error('❌ Failed to start server:', error);
-    process.exit(1);
-  }
+  if (process.env.AUTO_MIGRATE !== 'false') await runMigrations();
+  if (process.env.AUTO_SEED !== 'false') await runSeed();
+  await bootstrapAdminFromEnv();
+
+  const server = app.listen(PORT, '0.0.0.0', () => {
+    console.log(`EPRO CMS API listening on port ${PORT}`);
+  });
+
+  const sessionCleanup = setInterval(() => {
+    pool.query('DELETE FROM cms_admin_sessions WHERE expires_at <= CURRENT_TIMESTAMP')
+      .catch((error) => console.error('Session cleanup failed:', error.message));
+  }, 60 * 60 * 1000);
+  sessionCleanup.unref();
+
+  return server;
 };
 
-start();
+if (require.main === module) {
+  start().catch((error) => {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  });
+}
 
-module.exports = app;
+module.exports = { app, start };
