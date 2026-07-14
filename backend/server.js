@@ -86,6 +86,11 @@ if (process.env.ENABLE_CHAT === 'true') {
 
 app.use('/admin', express.static(path.join(__dirname, 'admin'), { index: 'index.html' }));
 
+// Public CMS login entry (same UI as /admin/, keeps assets under /admin/*)
+app.get(['/login', '/login/'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+});
+
 app.use((req, res) => {
   res.status(404).json({ error: 'Not Found', path: req.path, method: req.method });
 });

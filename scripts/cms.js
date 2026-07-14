@@ -64,8 +64,10 @@
   };
 
   const updateAdminLinks = () => {
+    // CMS login is on the public site host, not the API host.
+    const loginUrl = localHost ? 'http://localhost:3000/login' : 'https://epro.zeabur.app/login';
     document.querySelectorAll('.cta-login').forEach((link) => {
-      link.href = `${apiOrigin}/admin/`;
+      link.href = loginUrl;
       link.setAttribute('aria-label', '登入網站內容管理平台');
     });
   };
