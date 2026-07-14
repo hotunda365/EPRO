@@ -158,9 +158,9 @@ npm test
 2. 部署 `backend/` 為 API 服務，Node 22，port 3000。
 3. 設定上列 production 環境變數及首位管理員 secrets。
 4. 如需上載文件，設定 S3 相容儲存 secrets。
-5. 將 API 綁定 `https://api.epro.zeabur.app`，並確認 `/api/ready` 回傳 `ready`。
+5. 將 API 綁定 `https://epro-api.zeabur.app`，並確認 `/api/ready` 回傳 `ready`。
 6. 部署專案根目錄為 Nginx 前端服務，port 8080。
-7. 前台 `scripts/cms.js` 在正式域名使用 `https://api.epro.zeabur.app/api/v1`。
+7. 前台 `scripts/cms.js` 在正式域名使用 `https://epro-api.zeabur.app/api/v1`。
 8. 登入 `/admin/`，確認三品牌、聯絡資料及發布流程。
 
 ## 備份與復原

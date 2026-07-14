@@ -7,7 +7,7 @@
   const pageKey = body.dataset.cmsPage || '';
   const localHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
   const configuredBase = document.querySelector('meta[name="epro-api-base"]')?.content || window.EPRO_CMS_API;
-  const apiBase = (configuredBase || (localHost ? 'http://localhost:3000/api/v1' : 'https://api.epro.zeabur.app/api/v1')).replace(/\/$/, '');
+  const apiBase = (configuredBase || (localHost ? 'http://localhost:3000/api/v1' : 'https://epro-api.zeabur.app/api/v1')).replace(/\/$/, '');
   const apiOrigin = new URL(apiBase, window.location.origin).origin;
 
   const create = (tag, className, text) => {

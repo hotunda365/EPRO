@@ -9,7 +9,7 @@ EPRO API 是為易寶通訊公司開發的 RESTful API 服務，使用 Node.js +
 ## 基礎 URL
 
 - **開發環境**：`http://localhost:3000/api`
-- **生產環境**：`https://api.epro.zeabur.app/api`（部署後）
+- **生產環境**：`https://epro-api.zeabur.app/api`（部署後）
 
 ## 健康檢查
 

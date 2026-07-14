@@ -192,13 +192,13 @@ curl https://epro.zeabur.app/assets/logo/eprotel-logo.png
 
 ```bash
 # 健康檢查
-curl https://api.epro.zeabur.app/api/health
+curl https://epro-api.zeabur.app/api/health
 
 # 數據庫連接
-curl https://api.epro.zeabur.app/api/db-status
+curl https://epro-api.zeabur.app/api/db-status
 
 # 測試 API
-curl https://api.epro.zeabur.app/api/services
+curl https://epro-api.zeabur.app/api/services
 ```
 
 ---
@@ -263,7 +263,7 @@ PORT=3000
 - **Zeabur 控制台**：https://dash.zeabur.com
 - **項目編號**：6a321691302ffbcd03a948aa
 - **前端 URL**（部署後）：https://epro.zeabur.app
-- **API URL**（部署後）：https://api.epro.zeabur.app
+- **API URL**（部署後）：https://epro-api.zeabur.app
 
 ---
 
@@ -289,7 +289,7 @@ PORT=3000
 
 4. **驗證**
    - 訪問前端：https://epro.zeabur.app
-   - 測試 API：https://api.epro.zeabur.app/api/health
+   - 測試 API：https://epro-api.zeabur.app/api/health
 
 ---
 
